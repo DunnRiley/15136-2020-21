@@ -1,0 +1,75 @@
+package org.firstinspires.ftc.teamcode.backcountry;
+
+import android.os.Environment;
+
+import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+public class FTCUtilities {
+
+    private static HardwareMap hardwareMap;
+    private static Telemetry telemetry;
+    private static OpMode opMode;
+
+
+    public static HardwareMap getHardwareMap(){
+        return hardwareMap;
+    }
+
+    public static void setTelemetry(Telemetry t){
+        FTCUtilities.telemetry = t;
+    }
+
+    public static Telemetry getTelemetry(){
+        return telemetry;
+    }
+
+    public static void setOpMode(OpMode o){
+        FTCUtilities.opMode = o;
+        hardwareMap = o.hardwareMap;
+    }
+    public static OpMode getOpMode(){
+        return opMode;
+    }
+    public static boolean opModeIsActive() {
+        if (opMode instanceof LinearOpMode) {
+            return ((LinearOpMode) opMode).opModeIsActive();
+        } else {
+            return true;
+        }
+    }
+    public static String getLogDirectory(){
+
+        return (Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString());
+
+    }
+
+    public static void OpLogger(String caption, Object object){
+
+            System.out.println(caption + ": " + object);
+    }
+    public static void getTelemetry(String caption, Object object){
+        opMode.telemetry.addData(caption, object);
+        opMode.telemetry.update();
+    }
+
+    public static BNO055IMU getIMU (String imuName){
+        return hardwareMap.get(BNO055IMU.class, imuName);
+    }
+    public static void updateOpLogger(){
+        opMode.telemetry.update();
+    }
+
+    public static DcMotor getMotor(String deviceName) {
+        return hardwareMap.get(DcMotor.class, deviceName);
+    }
+
+    public static void OpSleep(int ms){
+        ((LinearOpMode) opMode).sleep(ms);
+    }
+}
