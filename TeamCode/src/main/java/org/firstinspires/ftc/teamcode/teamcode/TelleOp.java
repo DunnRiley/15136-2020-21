@@ -1,14 +1,10 @@
 package org.firstinspires.ftc.teamcode.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.util.Range;
-//from linux
 @TeleOp(name="TelleOp", group="Iterative Opmode")
 public class TelleOp extends OpMode
 {
@@ -18,10 +14,6 @@ public class TelleOp extends OpMode
     private DcMotor LeftFront = null;
     private DcMotor RightBack = null;
     private DcMotor LeftBack = null;
-
-    /*
-     * Code to run ONCE when the driver hits INIT
-     */
     @Override
     public void init() {
         telemetry.addData("Status", "Initialized");

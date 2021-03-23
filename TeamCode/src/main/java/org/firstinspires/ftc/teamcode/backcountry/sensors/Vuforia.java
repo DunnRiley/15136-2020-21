@@ -10,6 +10,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.internal.android.dx.util.Warning;
 import org.firstinspires.ftc.teamcode.backcountry.FTCUtilities;
 
+//import static org.firstinspires.ftc.teamcode.backcountry.FTCUtilities.telemetry;
+
 
 public class Vuforia {
     private VuforiaLocalizer vuforiaLocalizer;
@@ -39,8 +41,8 @@ public class Vuforia {
         }catch (Exception e) {
             throw new Warning("couldn't find vuforia frame");
         }
-
         bitmap = vuforiaLocalizer.convertFrameToBitmap(frame);
+//        telemetry.addData("Image", bitmap);
         return bitmap;
     }
 

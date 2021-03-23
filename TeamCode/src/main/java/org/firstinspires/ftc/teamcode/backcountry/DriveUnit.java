@@ -1,30 +1,28 @@
 package org.firstinspires.ftc.teamcode.backcountry;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-//import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import static org.firstinspires.ftc.teamcode.backcountry.FTCUtilities.getHardwareMap;
 
 public class DriveUnit {
     private double gearRatio;
     private double wheelDiameter;
-    private String deviceName;
-    private HardwareMap hardwareMap;
-    private DcMotor motor;
+    private DcMotorEx motor = null;
     private boolean direction;
-    //private static OpMode opmode;
+    private String diviceName;
 
-
-    public DriveUnit(double gearRatio, double wheelDiameter, String deviceName, boolean direction) {
+    public DriveUnit(double gearRatio, double wheelDiameter, String diviceName, boolean direction) {
         this.gearRatio = gearRatio;
         this.wheelDiameter = wheelDiameter;
-        this.deviceName = deviceName;
         this.direction = direction;
+        this.diviceName = diviceName;
         init();
     }
 
     public void init(){
-        motor = FTCUtilities.getHardwareMap().get(DcMotor.class,deviceName);
-        motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        motor = FTCUtilities.getHardwareMap().get(DcMotorEx.class,diviceName);
+        motor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
     public void setPower(double power){
@@ -38,7 +36,7 @@ public class DriveUnit {
 
     }
 
-    //this method should return the distance travelled in inches
+//    this method should return the distance travelled in inches
     public double getInchesTravelled(){
         double ticksPerRevolution=537.6;
 
